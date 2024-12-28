@@ -1,0 +1,11 @@
+services:
+  my-frontend:
+    image: my-frontend
+
+  my-backend:
+    image: my-backend
+
+  my-nginx:
+    image: my-nginx
+    ports:
+      - "80:80"
