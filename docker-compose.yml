@@ -1,11 +1,34 @@
 services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+
   my-frontend:
     image: my-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.development
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
 
   my-backend:
     image: my-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.development
+    restart: always
+    volumes:
+      - ./backend:/backend
+    depends_on:
+      - mongodb
 
   my-nginx:
     image: my-nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
