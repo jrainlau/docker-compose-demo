@@ -2,12 +2,11 @@ FROM oven/bun
 
 WORKDIR /frontend
 
-COPY package.json ./
-
-RUN bun install
-
-COPY . .
+RUN touch /bin/run-frontend.sh
+RUN chmod +x /bin/run-frontend.sh
+RUN echo "bun install --no-save;" \
+         "bun dev --host" \ >> /bin/run-frontend.sh
 
 EXPOSE 3000
 
-CMD ["bun", "run", "dev", "--host"]
+CMD ["/bin/run-frontend.sh"]

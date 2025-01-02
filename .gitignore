@@ -1,2 +1,4 @@
 .DS_Store
+.vscode
+.mongodb
 node_modules/

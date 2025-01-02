@@ -3,12 +3,15 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - ./.mongodb:/data/db
 
   my-frontend:
     image: my-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile.development
+      no_cache: true
     volumes:
       - ./frontend:/frontend
     ports:
@@ -19,6 +22,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.development
+      no_cache: true
     restart: always
     volumes:
       - ./backend:/backend
@@ -30,5 +34,10 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+      no_cache: true
+    depends_on:
+      - mongodb
+      - my-frontend
+      - my-backend
     ports:
       - "80:80"

@@ -69,11 +69,11 @@ function App() {
 
   return (
     <main className='flex justify-center items-center flex-col w-[500px]'>
-      <h1 className='text-red-900 text-8xl font-thin mb-2'>todos</h1>
+      <h1 className='mb-2 font-thin text-red-900 text-8xl'>todos</h1>
 
-      <input className='text-2xl p-4 shadow-md w-full inline-block' type="text" placeholder='What needs to be done?' onKeyUp={onEnter} />
+      <input className='inline-block w-full p-4 text-2xl shadow-md' type="text" placeholder='What needs to be done?' onKeyUp={onEnter} />
 
-      <div className="statistics flex justify-around w-full mt-4">
+      <div className="flex justify-around w-full mt-4 statistics">
         <label className='flex items-center gap-1'>
           <input type="radio" name="filter" value="all" defaultChecked onChange={onFilter} />
           All
@@ -88,11 +88,11 @@ function App() {
         </label>
       </div>
 
-      <ul className="list w-full">
+      <ul className="w-full list">
         {
-          onshowTodos.map((todo: any, index: number) => {
+          onshowTodos.map((todo: Todo, index: number) => {
             return (
-              <li key={index} className="group item flex shadow-md p-4 items-center justify-between text-2xl">
+              <li key={index} className="flex items-center justify-between p-4 text-2xl shadow-md group item">
                 {
                   todo.completed ? <del>{todo.text}</del> : <span>{todo.text}</span>
                 }
