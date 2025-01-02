@@ -1,5 +1,5 @@
 services:
-  mongodb:
+  my-mongo:
     image: mongo
     ports:
       - "27017:27017"
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./backend:/backend
     depends_on:
-      - mongodb
+      - my-mongo
 
   my-nginx:
     image: my-nginx
@@ -36,7 +36,7 @@ services:
       dockerfile: Dockerfile
       no_cache: true
     depends_on:
-      - mongodb
+      - my-mongo
       - my-frontend
       - my-backend
     ports:

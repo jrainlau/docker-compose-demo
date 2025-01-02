@@ -9,7 +9,7 @@ const Todo = mongoose.model('Todo', new mongoose.Schema({
 }));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://mongodb:27017/local')
+mongoose.connect('mongodb://my-mongo:27017/local')
   .then(() => {
     console.log('Connected to MongoDB.');
 
